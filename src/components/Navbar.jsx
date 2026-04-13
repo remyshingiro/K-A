@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,10 +17,10 @@ export default function Navbar() {
   }, [isOpen]);
 
   const navLinks = [
-    { name: 'About Us', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Major Projects', href: '#projects' },
-    { name: 'Partners', href: '#partners' },
+    { name: 'About Us', href: '/about' },
+    { name: 'Services', href: '/services' },
+    { name: 'Major Projects', href: '/projects' },
+    { name: 'Partners', href: '/partners' },
   ];
 
   return (
@@ -39,7 +40,7 @@ export default function Navbar() {
       <nav className="px-6 lg:px-12 py-4 flex justify-between items-center max-w-7xl mx-auto relative z-50">
         
         {/* Dynamic Logo */}
-        <div className="flex items-center gap-3 relative z-50">
+        <Link to="/" className="flex items-center gap-3 relative z-50" onClick={() => setIsOpen(false)}>
           <div className="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold text-xl transition-colors duration-300">
             K
           </div>
@@ -49,14 +50,14 @@ export default function Navbar() {
               Technology
             </span>
           </div>
-        </div>
+        </Link>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-8 text-sm font-semibold text-slate-600">
           {navLinks.map((link) => (
-            <a key={link.name} href={link.href} className="hover:text-blue-700 transition-colors">
+            <Link key={link.name} to={link.href} className="hover:text-blue-700 transition-colors">
               {link.name}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -78,35 +79,37 @@ export default function Navbar() {
 
       {/* Full-Screen Command Overlay (Mobile) */}
       <div 
-        className={`fixed inset-0 bg-slate-900 z-40 flex flex-col justify-center px-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8 pointer-events-none'}`}
+        className={`fixed inset-0 bg-slate-900 z-40 flex flex-col px-6 pt-24 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8 pointer-events-none'}`}
       >
-        {/* Navigation Links Array */}
-        <div className="flex flex-col gap-6 mt-16">
+        {/* Navigation Links Array - Vertically centered and spaced */}
+        <div className="flex-grow flex flex-col justify-center gap-8 mb-8">
           {navLinks.map((link, i) => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
+              to={link.href}
               onClick={() => setIsOpen(false)}
               style={{ transitionDelay: `${isOpen ? i * 100 + 150 : 0}ms` }}
-              className={`text-white text-4xl font-extrabold tracking-tight transform transition-all duration-500 ease-out hover:text-blue-400 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+              className={`text-slate-300 text-2xl font-bold tracking-wide transform transition-all duration-500 ease-out hover:text-white border-b border-slate-800 pb-2 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
             >
               {link.name}
-            </a>
+            </Link>
           ))}
         </div>
 
-        {/* Quick Contact B2B Module */}
+        {/* Quick Contact B2B Module - Locked to bottom */}
         <div 
           style={{ transitionDelay: `${isOpen ? 500 : 0}ms` }}
-          className={`mt-auto mb-12 border-t border-slate-700 pt-8 transition-all duration-700 ease-out ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+          className={`pb-12 transition-all duration-700 ease-out ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
         >
-          <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-4">Enterprise Contact</p>
-          <p className="text-white text-lg font-medium mb-1">+250 (0)788 483 708</p>
-          <p className="text-slate-300 mb-6">katechnology.ltd@gmail.com</p>
-          
-          <button className="bg-blue-700 hover:bg-blue-600 text-white w-full py-4 rounded-md font-bold text-lg transition-colors shadow-lg">
-            Request Formal Quote
-          </button>
+          <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
+            <p className="text-blue-400 text-xs font-bold uppercase tracking-widest mb-3">Enterprise Contact</p>
+            <p className="text-white text-base font-medium mb-1">+250 (0)788 483 708</p>
+            <p className="text-slate-400 text-sm mb-5">katechnology.ltd@gmail.com</p>
+            
+            <button className="bg-blue-700 hover:bg-blue-600 text-white w-full py-3.5 rounded-lg font-bold text-sm transition-colors shadow-lg">
+              Request Formal Quote
+            </button>
+          </div>
         </div>
       </div>
 
