@@ -2,6 +2,8 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import ServicesGrid from './components/ServicesGrid';
+import FeaturedProjects from './components/FeaturedProjects';
+import PartnersGrid from './components/PartnersGrid';
 
 function App() {
   return (
@@ -9,8 +11,12 @@ function App() {
       <Navbar />
       <main>
         <HeroSection />
-        <ServicesGrid /> 
+        <ServicesGrid />
+        <FeaturedProjects />
+        <PartnersGrid />
       </main>
+      
+      {/* Footer coming next */}
     </div>
   );
 }
