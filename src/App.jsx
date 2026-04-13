@@ -1,6 +1,6 @@
 // src/App.jsx
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
 // Global Components
 import Navbar from './components/Navbar';
@@ -8,34 +8,42 @@ import Footer from './components/Footer';
 
 // Pages
 import Home from './pages/Home';
-// We will build these placeholder pages next
-const PlaceholderPage = ({ title }) => (
-  <div className="min-h-[60vh] flex items-center justify-center bg-slate-50">
-    <h1 className="text-4xl font-bold text-slate-300">{title} Page Coming Soon</h1>
-  </div>
-);
+import About from './pages/About';
+import Services from './pages/Services';
+import Projects from './pages/Projects';
+import Contact from './pages/Contact';
+
+// Utility to scroll to top on route change
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <div className="min-h-screen flex flex-col bg-slate-50 font-sans selection:bg-blue-700 selection:text-white">
         
-        {/* Navbar stays fixed on all pages */}
+        {/* Persistent Navigation */}
         <Navbar />
 
-        {/* Dynamic Page Content */}
+        {/* Dynamic Viewport */}
         <div className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<PlaceholderPage title="About Us" />} />
-            <Route path="/services" element={<PlaceholderPage title="Services" />} />
-            <Route path="/projects" element={<PlaceholderPage title="Major Projects" />} />
-            <Route path="/partners" element={<PlaceholderPage title="Partners" />} />
-            <Route path="/contact" element={<PlaceholderPage title="Contact" />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/partners" element={<Home />} /> {/* Routes to Home where Partners section lives */}
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </div>
 
-        {/* Footer stays fixed on all pages */}
+        {/* Persistent Footer */}
         <Footer />
         
       </div>
