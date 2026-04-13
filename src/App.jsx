@@ -2,8 +2,10 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import ServicesGrid from './components/ServicesGrid';
+import WorkProcess from './components/WorkProcess';
 import FeaturedProjects from './components/FeaturedProjects';
 import PartnersGrid from './components/PartnersGrid';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -12,11 +14,11 @@ function App() {
       <main>
         <HeroSection />
         <ServicesGrid />
+        <WorkProcess />
         <FeaturedProjects />
         <PartnersGrid />
       </main>
-      
-      {/* Footer coming next */}
+      <Footer />
     </div>
   );
 }
