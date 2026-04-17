@@ -1,11 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
-// 1. IMPORT THE LOGO HERE (Adjust the filename if you used .png)
 import logo from '../assets/ka-logo.webp'; 
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  // 1. ADDED: The state to track if the user has scrolled
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // 2. ADDED: The Scroll Detection Engine
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Prevent background scrolling when overlay is open
   useEffect(() => {
@@ -27,9 +41,11 @@ export default function Navbar() {
   ];
 
   return (
-    <div className="w-full shadow-sm z-50 bg-white relative">
-      {/* Top Utility Bar (Desktop Only) */}
-      <div className="hidden md:flex justify-between items-center bg-slate-900 text-slate-300 px-6 py-2 text-xs font-medium">
+    // 3. FIXED: Typo corrections (backdrop-blur-md, shadow-sm) and changed to <header>
+    <header className={`w-full z-50 sticky top-0 transition-all duration-300 ${isScrolled && !isOpen ? 'bg-white/90 backdrop-blur-md shadow-md' : 'bg-white shadow-sm'}`}>
+      
+      {/* Top Utility Bar - Collapses smoothly when scrolled down */}
+      <div className={`hidden md:flex justify-between items-center bg-slate-900 text-slate-300 px-6 transition-all duration-500 overflow-hidden text-xs font-medium ${isScrolled ? 'max-h-0 py-0 opacity-0' : 'max-h-12 py-2 opacity-100'}`}>
         <div className="flex gap-6">
           <span>📍 KG 61 Street, Kimironko Ave, Kigali</span>
           <span>📧 katechnology.ltd@gmail.com</span>
@@ -39,16 +55,16 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Main Navigation */}
-      <nav className="px-6 lg:px-12 py-3 flex justify-between items-center max-w-7xl mx-auto relative z-50">
+      {/* Main Navigation - Padding shrinks when scrolled */}
+      <nav className={`px-6 lg:px-12 flex justify-between items-center max-w-7xl mx-auto relative z-50 transition-all duration-300 ${isScrolled ? 'py-2' : 'py-3'}`}>
         
-        {/* ACTUAL COMPANY LOGO */}
+        {/* Dynamic Logo - Shrinks when scrolled to save vertical space */}
         <Link to="/" className="flex items-center relative z-50" onClick={() => setIsOpen(false)}>
           <div className={`transition-all duration-300 rounded-md ${isOpen ? 'bg-white p-1.5 shadow-md' : 'p-0'}`}>
             <img 
               src={logo} 
               alt="K.A Technology Solution" 
-              className="h-16 md:h-20 lg:h-24 object-contain transition-all duration-300" 
+              className={`object-contain transition-all duration-500 ${isScrolled ? 'h-12 md:h-14' : 'h-16 md:h-20 lg:h-24'}`} 
             />
           </div>
         </Link>
@@ -66,7 +82,7 @@ export default function Navbar() {
           Request Quote
         </button>
 
-      {/* Animated Hamburger Button (Mobile) - Now always dark (slate-900) */}
+        {/* Animated Hamburger Button (Mobile) - Always dark (slate-900) */}
         <button
           className="md:hidden relative z-50 w-8 h-8 flex flex-col justify-center items-center group focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
@@ -82,7 +98,6 @@ export default function Navbar() {
       <div 
         className={`fixed inset-0 bg-white z-40 flex flex-col px-6 pt-28 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8 pointer-events-none'}`}
       >
-        {/* Navigation Links Array - Vertically centered and spaced */}
         <div className="flex-grow flex flex-col justify-center gap-8 mb-8">
           {navLinks.map((link, i) => (
             <Link
@@ -97,7 +112,6 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Quick Contact B2B Module - Light Theme */}
         <div 
           style={{ transitionDelay: `${isOpen ? 500 : 0}ms` }}
           className={`pb-12 transition-all duration-700 ease-out ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
@@ -114,6 +128,6 @@ export default function Navbar() {
         </div>
       </div>
 
-    </div>
+    </header>
   );
 }
