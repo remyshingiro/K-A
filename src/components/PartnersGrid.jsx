@@ -2,24 +2,63 @@ import React from 'react';
 import { partners } from '../data/partners';
 
 export default function PartnersGrid() {
-  return (
-    <section id="partners" className="py-24 px-6 lg:px-12 bg-slate-50 border-t border-slate-200">
-      <div className="max-w-7xl mx-auto">
-        
-        <div className="text-center mb-16">
-          <h2 className="text-blue-700 font-semibold tracking-wider uppercase text-sm mb-3">Global Network</h2>
-          <h3 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight mb-6">Our Manufacturing Partners</h3>
-          <p className="text-slate-600 max-w-2xl mx-auto text-lg">
-            We partner with the world's leading manufacturers to bring cutting-edge hardware and software infrastructure to Rwanda.
-          </p>
-        </div>
+  // Duplicate the array to create a seamless infinite loop
+  const duplicatedPartners = [...partners, ...partners];
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-          {partners.map((partner) => (
-            <div key={partner.id} className="bg-white border border-slate-200 p-6 rounded-xl text-center hover:shadow-lg hover:border-blue-300 transition-all duration-300 flex flex-col justify-center items-center h-40 group">
-              <h4 className="font-bold text-lg text-slate-900 mb-2 group-hover:text-blue-700 transition-colors">{partner.name}</h4>
-              <p className="text-xs text-slate-500 uppercase tracking-widest">{partner.location}</p>
-              <div className="w-8 h-1 bg-blue-100 group-hover:bg-blue-600 mt-4 rounded-full transition-colors"></div>
+  return (
+    <section id="partners" className="py-24 bg-white border-t border-slate-100 relative overflow-hidden">
+      
+      {/* Custom CSS for the infinite marquee animation.
+        It moves the track exactly 50% (the width of the original 15 logos) over 40 seconds. 
+      */}
+      <style>
+        {`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-marquee {
+            animation: marquee 40s linear infinite;
+          }
+          .animate-marquee:hover {
+            animation-play-state: paused;
+          }
+        `}
+      </style>
+
+      {/* Heading Container */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-12">
+        <h3 className="text-2xl md:text-3xl font-light text-slate-400">
+          Trusted Global Partners
+        </h3>
+      </div>
+
+      {/* Full-width Marquee Container */}
+      <div className="relative w-full flex items-center">
+        
+        {/* Vignette Overlay: Left & Right Fades for a premium look */}
+        <div className="absolute top-0 left-0 w-24 md:w-48 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-24 md:w-48 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+
+        {/* The Scrolling Track */}
+        <div className="flex w-max animate-marquee items-center gap-16 pr-16 py-4">
+          {duplicatedPartners.map((partner, index) => (
+            <div 
+              // Using index in the key because the partner objects are duplicated
+              key={`${partner.id}-${index}`} 
+              className="group relative flex items-center justify-center w-32 md:w-48 h-20 cursor-pointer flex-shrink-0"
+            >
+              {/* Tooltip for context on hover */}
+              <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-xs py-1.5 px-3 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-20">
+                {partner.name} • {partner.location}
+              </div>
+
+              {/* The Logo Image */}
+              <img 
+                src={partner.logo} 
+                alt={`${partner.name} logo`} 
+                className="max-h-full max-w-full object-contain  opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 ease-in-out"
+              />
             </div>
           ))}
         </div>
