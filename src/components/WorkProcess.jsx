@@ -1,81 +1,133 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+const steps = [
+  {
+    id: "01",
+    phase: "Procurement & Tender",
+    title: "Strategic Alignment",
+    description: "We analyze technical requirements and deliver competitive, realistic proposals that align your institutional needs with our global manufacturing partners.",
+    image: "https://placehold.co/800x400/1e293b/ffffff?text=Strategic+Alignment",
+  },
+  {
+    id: "02",
+    phase: "Architecture & Design",
+    title: "System Blueprinting",
+    description: "Our certified engineers design highly scalable architectures, ensuring all security, electrical, and structural systems meet international compliance standards.",
+    image: "https://placehold.co/800x400/334155/ffffff?text=Architecture+%26+Design",
+  },
+  {
+    id: "03",
+    phase: "Deployment & Integration",
+    title: "Precision Execution",
+    description: "We deploy enterprise-grade hardware and software infrastructure with zero-downtime tolerance, accompanied by rigorous on-site installation protocols.",
+    image: "https://placehold.co/800x400/0f172a/ffffff?text=Deployment+%26+Execution",
+  },
+  {
+    id: "04",
+    phase: "Handover & Support",
+    title: "SLA Maintenance",
+    description: "Final quality checks ensure 100% compliance. We then transition seamlessly into long-term Service Level Agreements (SLAs) and preventive maintenance.",
+    image: "https://placehold.co/800x400/475569/ffffff?text=Handover+%26+Support",
+  }
+];
 
 export default function WorkProcess() {
-  const steps = [
-    {
-      id: "01",
-      phase: "Procurement & Tender",
-      title: "Strategic Alignment",
-      description: "We analyze technical requirements and deliver competitive, realistic proposals that align your institutional needs with our global manufacturing partners.",
-    },
-    {
-      id: "02",
-      phase: "Architecture & Design",
-      title: "System Blueprinting",
-      description: "Our certified engineers design highly scalable architectures, ensuring all security, electrical, and structural systems meet international compliance standards.",
-    },
-    {
-      id: "03",
-      phase: "Deployment & Integration",
-      title: "Precision Execution",
-      description: "We deploy enterprise-grade hardware and software infrastructure with zero-downtime tolerance, accompanied by rigorous on-site installation protocols.",
-    },
-    {
-      id: "04",
-      phase: "Handover & Support",
-      title: "SLA Maintenance",
-      description: "Final quality checks ensure 100% compliance. We then transition seamlessly into long-term Service Level Agreements (SLAs) and preventive maintenance.",
-    }
-  ];
+  const [activeStep, setActiveStep] = useState(0);
 
   return (
-    <section className="py-24 px-6 lg:px-12 bg-white border-b border-slate-100">
+    // REDUCED: Padding from py-24 to py-16
+    <section className="py-16 px-6 lg:px-12 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
-        {/* Section Header */}
-        <div className="mb-20 max-w-2xl">
-          <h2 className="text-blue-700 font-bold tracking-widest uppercase text-xs mb-3 flex items-center gap-2">
-            <span className="w-4 h-0.5 bg-blue-700"></span> Operational Excellence
-          </h2>
-          <h3 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">
+        {/* Section Header - Condensing margins */}
+        <div className="mb-10 text-center lg:text-left">
+          <div className="flex items-center justify-center lg:justify-start gap-3 mb-3">
+            <div className="h-px w-8 bg-amber-500 hidden lg:block"></div>
+            <h2 className="text-amber-500 font-bold tracking-widest uppercase text-xs">
+              Operational Excellence
+            </h2>
+            <div className="h-px w-8 bg-amber-500 hidden lg:block"></div>
+          </div>
+          {/* REDUCED: Header text size slightly */}
+          <h3 className="text-3xl md:text-4xl font-extrabold text-blue-950 tracking-tight mb-4">
             The K&A Execution Matrix
           </h3>
-          <p className="text-slate-600 text-lg leading-relaxed">
-            From the initial government tender to long-term hardware maintenance, our execution is predictable, transparent, and strictly compliant.
+          <p className="text-slate-500 text-base leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            From initial government tender to long-term hardware maintenance, our execution is predictable, transparent, and strictly compliant.
           </p>
         </div>
 
-        {/* Timeline Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 relative">
+        {/* Two-Column Interactive Layout - REDUCED: Gap between columns */}
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
           
-          {/* Background Connecting Line (Desktop Only) */}
-          <div className="hidden md:block absolute top-6 left-6 right-6 h-0.5 bg-slate-200 z-0"></div>
+          {/* Left Column: Interactive Timeline Index */}
+          <div className="lg:w-4/12 flex flex-col relative space-y-2">
+            {/* Background tracking line - Adjusted for new circle size */}
+            <div className="hidden lg:block absolute left-5 top-5 bottom-5 w-[2px] bg-slate-200 z-0"></div>
 
-          {steps.map((step, index) => (
-            <div key={index} className="relative z-10 group">
+            {steps.map((step, index) => {
+              const isActive = activeStep === index;
+              return (
+                <div 
+                  key={step.id}
+                  onClick={() => setActiveStep(index)}
+                  // REDUCED: Padding inside the clickable tab
+                  className={`relative z-10 flex gap-4 cursor-pointer p-3 rounded-lg transition-all duration-300 group ${
+                    isActive ? 'bg-white shadow-sm border border-slate-200' : 'hover:bg-slate-100/50 border border-transparent'
+                  }`}
+                >
+                  {/* Step Node - REDUCED: Size from w-14 to w-10 */}
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-base border-2 transition-all duration-500 flex-shrink-0 bg-white ${
+                    isActive 
+                      ? 'border-blue-700 text-blue-700 shadow-[0_0_10px_rgba(29,78,216,0.15)]' 
+                      : 'border-slate-200 text-slate-400 group-hover:border-blue-400 group-hover:text-blue-500'
+                  }`}>
+                    {step.id}
+                  </div>
+
+                  {/* Step Titles */}
+                  <div className="flex flex-col justify-center">
+                    <p className={`text-[10px] font-bold uppercase tracking-wider mb-0.5 transition-colors ${isActive ? 'text-amber-500' : 'text-slate-400'}`}>
+                      {step.phase}
+                    </p>
+                    <h4 className={`text-lg font-bold transition-colors duration-300 ${isActive ? 'text-blue-950' : 'text-slate-700'}`}>
+                      {step.title}
+                    </h4>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Right Column: Dynamic Content Display */}
+          <div className="lg:w-8/12">
+            {/* REDUCED: Padding inside the main content card */}
+            <div className="bg-white rounded-xl p-5 md:p-6 border border-slate-200 shadow-md relative overflow-hidden h-full flex flex-col">
               
-              {/* Step Indicator Node */}
-              <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-200 shadow-sm flex items-center justify-center text-slate-400 font-bold text-lg mb-8 group-hover:bg-blue-700 group-hover:text-white group-hover:border-blue-700 group-hover:-translate-y-1 transition-all duration-300">
-                {step.id}
+              {/* Dynamic Image Container - OPTIMIZED: Fixed ultra-wide cinematic height */}
+              <div className="w-full h-48 sm:h-56 lg:h-64 bg-slate-100 rounded-lg overflow-hidden mb-6">
+                <img 
+                  key={steps[activeStep].image}
+                  src={steps[activeStep].image} 
+                  alt={steps[activeStep].title} 
+                  className="w-full h-full object-cover animate-fade-in"
+                />
               </div>
-              
-              {/* Content */}
-              <div className="pr-4">
-                <p className="text-blue-700 text-xs font-bold uppercase tracking-wider mb-2">
-                  {step.phase}
-                </p>
-                <h4 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors duration-300">
-                  {step.title}
+
+              {/* Dynamic Text Content */}
+              <div key={steps[activeStep].id} className="animate-fade-in flex-grow">
+                <h4 className="text-xl md:text-2xl font-extrabold text-blue-950 mb-3 flex items-center gap-2">
+                  <span className="text-amber-500">{steps[activeStep].id}.</span> {steps[activeStep].title}
                 </h4>
-                <p className="text-slate-600 text-sm leading-relaxed">
-                  {step.description}
+                <p className="text-slate-600 text-base leading-relaxed">
+                  {steps[activeStep].description}
                 </p>
               </div>
-              
-            </div>
-          ))}
-        </div>
 
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );
