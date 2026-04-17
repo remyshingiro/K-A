@@ -1,60 +1,125 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { projects } from '../data/projects';
 
 export default function FeaturedProjects() {
-  // Take the first 6 high-impact projects for the homepage
-  const featured = projects.slice(0, 6);
+  // State to track the currently selected filter
+  const [activeCategory, setActiveCategory] = useState('All');
+
+  // Dynamically extract unique categories from your data to future-proof the filter bar
+  const categories = useMemo(() => {
+    const uniqueCategories = [...new Set(projects.map(p => p.category).filter(Boolean))];
+    return ['All', ...uniqueCategories.sort()];
+  }, []);
+
+  // Filter the projects based on the active category, then take up to 8 for the grid
+  const displayedProjects = useMemo(() => {
+    const filtered = activeCategory === 'All' 
+      ? projects 
+      : projects.filter(p => p.category === activeCategory);
+    return filtered.slice(0, 8);
+  }, [activeCategory]);
 
   return (
-    <section id="projects" className="py-24 px-6 lg:px-12 bg-white border-b border-slate-100">
+    <section id="projects" className="py-24 px-6 lg:px-12 bg-white">
       <div className="max-w-7xl mx-auto">
         
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div>
-            <h2 className="text-blue-700 font-semibold tracking-wider uppercase text-sm mb-2">Track Record</h2>
-            <h3 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight">Major National Projects</h3>
+        {/* Header Section */}
+        <div className="text-center mb-10">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="h-px w-12 bg-yellow-500"></div>
+            <h2 className="text-yellow-500 font-bold tracking-widest uppercase text-sm">Enterprise Portfolio</h2>
+            <div className="h-px w-12 bg-yellow-500"></div>
           </div>
-          <button className="text-blue-700 font-semibold hover:text-blue-900 flex items-center gap-2 transition-colors">
-            View All 27 Projects 
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-          </button>
+          <h3 className="text-2xl md:text-5xl font-extrabold text-blue-900 tracking-tight mb-4">
+            National & Enterprise Infrastructure
+          </h3>
+          <p className="text-slate-500 max-w-2xl mx-auto">
+            From design to installation, we deliver end-to-end engineering services that meet international standards.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featured.map((project) => (
-            <div key={project.id} className="bg-slate-50 border border-slate-200 rounded-xl p-8 hover:shadow-xl hover:border-blue-200 transition-all duration-300 group flex flex-col justify-between">
-              
-              <div>
-                <div className="flex justify-between items-start mb-6">
-                  <span className="text-xs font-bold bg-blue-100 text-blue-800 px-3 py-1 rounded-full uppercase tracking-wider">
-                    {project.client.includes("RRA") || project.client.includes("BNR") ? "Government" : "Enterprise"}
-                  </span>
-                  <span className="flex items-center gap-1.5 text-sm font-medium text-slate-500">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-                    {project.status.split(',')[0]}
-                  </span>
-                </div>
-                
-                <h4 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors">
-                  {project.title}
-                </h4>
-                <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                  {project.description}
-                </p>
-              </div>
-
-              <div className="border-t border-slate-200 pt-4 mt-auto">
-                <div className="flex justify-between items-center text-sm font-medium text-slate-900">
-                  <span className="truncate max-w-[60%]">{project.client}</span>
-                  <span className="text-slate-500 flex items-center gap-1">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                    {project.location}
-                  </span>
-                </div>
-              </div>
-              
-            </div>
+        {/* Interactive Category Filter Engine */}
+        <div className="flex flex-wrap justify-center gap-2 mb-12">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setActiveCategory(category)}
+              className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 ${
+                activeCategory === category
+                  ? 'bg-blue-900 text-white shadow-md'
+                  : 'bg-white text-slate-600 border border-slate-200 hover:border-blue-900 hover:text-blue-900'
+              }`}
+            >
+              {category}
+            </button>
           ))}
+        </div>
+
+        {/* Project Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 mb-16 min-h-[400px] items-start">
+          {displayedProjects.length > 0 ? (
+            displayedProjects.map((project) => (
+              <div key={project.id} className="group cursor-pointer flex flex-col h-full bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-xl transition-all duration-300 overflow-hidden">
+                
+                {/* Image Container with Zoom Physics */}
+                <div className="relative overflow-hidden aspect-[4/3] bg-slate-200 border-b border-slate-100">
+                  <img 
+                    src={project.image || "https://placehold.co/600x400/cbd5e1/475569?text=Project+Image"} 
+                    alt={project.title}
+                    className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
+                    onError={(e) => { e.target.src = 'https://placehold.co/600x400/cbd5e1/475569?text=Image+Unavailable'; }}
+                  />
+                  {/* Floating Category Badge inside image */}
+                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded shadow-sm">
+                    <span className="text-yellow-600 text-xs font-extrabold uppercase tracking-wider">
+                      {project.category}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Data Layer */}
+                <div className="flex flex-col flex-grow p-6">
+                  <h4 className="text-lg font-bold text-blue-950 mb-2 group-hover:text-blue-700 transition-colors line-clamp-2">
+                    {project.title}
+                  </h4>
+                  <p className="text-slate-500 text-sm line-clamp-2 mb-4 flex-grow">
+                    {project.description}
+                  </p>
+                  
+                  {/* Location Footer */}
+                  <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
+                    <div className="flex items-center gap-1.5 text-sm font-medium text-slate-500">
+                      <svg className="w-4 h-4 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                      <span className="truncate max-w-[120px]">{project.location.split(',')[0]}</span>
+                    </div>
+                    {/* Status Indicator */}
+                    <span className="flex items-center gap-1.5 text-xs font-bold text-slate-600 uppercase tracking-wider">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-900"></span>
+                      {project.status.split(',')[0]}
+                    </span>
+                  </div>
+                </div>
+
+              </div>
+            ))
+          ) : (
+            /* Defensive Fallback: Empty State */
+            <div className="col-span-full py-12 flex flex-col items-center justify-center text-slate-500 bg-white border border-slate-200 rounded-xl border-dashed">
+              <svg className="w-12 h-12 mb-3 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+              <p className="font-medium">No projects found in this category.</p>
+            </div>
+          )}
+        </div>
+
+        {/* Global Call to Action */}
+        <div className="flex justify-center">
+          <Link 
+            to="/projects" 
+            className="bg-blue-900 hover:bg-blue-900 text-white font-bold py-3.5 px-8 rounded-full transition-all shadow-md hover:shadow-lg flex items-center gap-2"
+          >
+            View All 27 Projects
+          </Link>
         </div>
 
       </div>
