@@ -5,6 +5,7 @@ import ServicesGrid from '../components/ServicesGrid';
 import WorkProcess from '../components/WorkProcess';
 import FeaturedProjects from '../components/FeaturedProjects';
 import PartnersGrid from '../components/PartnersGrid';
+import ContactSection from '../components/ContactSection'
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <WorkProcess />
       <FeaturedProjects />
       <PartnersGrid />
+      <ContactSection/>
     </main>
   );
 }
