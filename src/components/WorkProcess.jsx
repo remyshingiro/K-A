@@ -35,34 +35,32 @@ export default function WorkProcess() {
   const [activeStep, setActiveStep] = useState(0);
 
   return (
-    // REDUCED: Padding from py-24 to py-16
     <section className="py-16 px-6 lg:px-12 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
-        {/* Section Header - Condensing margins */}
-        <div className="mb-10 text-center lg:text-left">
-          <div className="flex items-center justify-center lg:justify-start gap-3 mb-3">
-            <div className="h-px w-8 bg-amber-500 hidden lg:block"></div>
-            <h2 className="text-amber-500 font-bold tracking-widest uppercase text-xs">
+        {/* CHANGED: Section Header is now fully centered */}
+        <div className="mb-12 text-center flex flex-col items-center">
+          <div className="flex items-center justify-center gap-3 mb-3">
+            {/* CHANGED: Accent color shifted to Pale Blue */}
+            <div className="h-px w-8 bg-blue-400"></div>
+            <h2 className="text-blue-400 font-bold tracking-widest uppercase text-xs">
               Operational Excellence
             </h2>
-            <div className="h-px w-8 bg-amber-500 hidden lg:block"></div>
+            <div className="h-px w-8 bg-blue-400"></div>
           </div>
-          {/* REDUCED: Header text size slightly */}
           <h3 className="text-3xl md:text-4xl font-extrabold text-blue-950 tracking-tight mb-4">
             The K&A Execution Matrix
           </h3>
-          <p className="text-slate-500 text-base leading-relaxed max-w-2xl mx-auto lg:mx-0">
+          <p className="text-slate-500 text-base leading-relaxed max-w-2xl text-center">
             From initial government tender to long-term hardware maintenance, our execution is predictable, transparent, and strictly compliant.
           </p>
         </div>
 
-        {/* Two-Column Interactive Layout - REDUCED: Gap between columns */}
+        {/* Two-Column Interactive Layout */}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
           
           {/* Left Column: Interactive Timeline Index */}
           <div className="lg:w-4/12 flex flex-col relative space-y-2">
-            {/* Background tracking line - Adjusted for new circle size */}
             <div className="hidden lg:block absolute left-5 top-5 bottom-5 w-[2px] bg-slate-200 z-0"></div>
 
             {steps.map((step, index) => {
@@ -71,12 +69,11 @@ export default function WorkProcess() {
                 <div 
                   key={step.id}
                   onClick={() => setActiveStep(index)}
-                  // REDUCED: Padding inside the clickable tab
                   className={`relative z-10 flex gap-4 cursor-pointer p-3 rounded-lg transition-all duration-300 group ${
                     isActive ? 'bg-white shadow-sm border border-slate-200' : 'hover:bg-slate-100/50 border border-transparent'
                   }`}
                 >
-                  {/* Step Node - REDUCED: Size from w-14 to w-10 */}
+                  {/* Step Node */}
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-base border-2 transition-all duration-500 flex-shrink-0 bg-white ${
                     isActive 
                       ? 'border-blue-700 text-blue-700 shadow-[0_0_10px_rgba(29,78,216,0.15)]' 
@@ -87,7 +84,8 @@ export default function WorkProcess() {
 
                   {/* Step Titles */}
                   <div className="flex flex-col justify-center">
-                    <p className={`text-[10px] font-bold uppercase tracking-wider mb-0.5 transition-colors ${isActive ? 'text-amber-500' : 'text-slate-400'}`}>
+                    {/* CHANGED: Active phase text color shifted to Pale Blue */}
+                    <p className={`text-[10px] font-bold uppercase tracking-wider mb-0.5 transition-colors ${isActive ? 'text-blue-400' : 'text-slate-400'}`}>
                       {step.phase}
                     </p>
                     <h4 className={`text-lg font-bold transition-colors duration-300 ${isActive ? 'text-blue-950' : 'text-slate-700'}`}>
@@ -101,10 +99,8 @@ export default function WorkProcess() {
 
           {/* Right Column: Dynamic Content Display */}
           <div className="lg:w-8/12">
-            {/* REDUCED: Padding inside the main content card */}
             <div className="bg-white rounded-xl p-5 md:p-6 border border-slate-200 shadow-md relative overflow-hidden h-full flex flex-col">
               
-              {/* Dynamic Image Container - OPTIMIZED: Fixed ultra-wide cinematic height */}
               <div className="w-full h-48 sm:h-56 lg:h-64 bg-slate-100 rounded-lg overflow-hidden mb-6">
                 <img 
                   key={steps[activeStep].image}
@@ -114,10 +110,10 @@ export default function WorkProcess() {
                 />
               </div>
 
-              {/* Dynamic Text Content */}
               <div key={steps[activeStep].id} className="animate-fade-in flex-grow">
                 <h4 className="text-xl md:text-2xl font-extrabold text-blue-950 mb-3 flex items-center gap-2">
-                  <span className="text-amber-500">{steps[activeStep].id}.</span> {steps[activeStep].title}
+                  {/* CHANGED: Number accent color shifted to Pale Blue */}
+                  <span className="text-blue-400">{steps[activeStep].id}.</span> {steps[activeStep].title}
                 </h4>
                 <p className="text-slate-600 text-base leading-relaxed">
                   {steps[activeStep].description}
