@@ -35,16 +35,16 @@ export default function ServicesGrid() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    // Condensed padding to match the optimized spacing strategy
-    <section className="py-16 px-6 lg:px-12 bg-white border-t border-slate-100">
+    <section id="services" className="py-16 px-6 lg:px-12 bg-white border-t border-slate-100">
       <div className="max-w-7xl mx-auto">
         
-        {/* Header - Left aligned for a tighter, more clinical read */}
-        <div className="mb-10 text-center lg:text-left">
-          <div className="flex items-center justify-center lg:justify-start gap-3 mb-3">
-            <div className="h-px w-8 bg-amber-500 hidden lg:block"></div>
-            <h2 className="text-amber-500 font-bold tracking-widest uppercase text-xs">Our Capabilities</h2>
-            <div className="h-px w-8 bg-amber-500 hidden lg:block"></div>
+        {/* CHANGED: Header is now perfectly centered */}
+        <div className="mb-12 text-center flex flex-col items-center">
+          <div className="flex items-center justify-center gap-3 mb-3">
+            {/* CHANGED: Accent lines shifted to Pale Blue */}
+            <div className="h-px w-8 bg-blue-400"></div>
+            <h2 className="text-blue-400 font-bold tracking-widest uppercase text-xs">Our Capabilities</h2>
+            <div className="h-px w-8 bg-blue-400"></div>
           </div>
           <h3 className="text-3xl md:text-4xl font-extrabold text-blue-950 tracking-tight">
             Enterprise Solutions Architecture
@@ -54,7 +54,7 @@ export default function ServicesGrid() {
         {/* The Space-Saving Tab System */}
         <div className="flex flex-col lg:flex-row gap-8 items-start">
           
-          {/* Tab Controls (Vertical on mobile, stack on desktop left) */}
+          {/* Tab Controls / Interactive Service Cards */}
           <div className="w-full lg:w-1/3 flex flex-col gap-2">
             {services.map((service, index) => {
               const isActive = activeIndex === index;
@@ -68,7 +68,8 @@ export default function ServicesGrid() {
                       : 'bg-white text-slate-600 border-slate-200 hover:border-blue-400 hover:bg-slate-50'
                   }`}
                 >
-                  <div className={`${isActive ? 'text-amber-400' : 'text-slate-400'}`}>
+                  {/* CHANGED: Active icon color shifted from Amber to Pale Blue */}
+                  <div className={`${isActive ? 'text-blue-300' : 'text-slate-400'}`}>
                     {service.icon}
                   </div>
                   <span className="font-bold text-sm tracking-wide">
@@ -97,8 +98,8 @@ export default function ServicesGrid() {
                   {services[activeIndex].description}
                 </p>
                 
-                {/* Micro-interaction: A stylized "Learn More" arrow that points to the contact section */}
-                <a href="#contact" className="inline-flex items-center gap-2 mt-8 text-amber-600 font-bold text-sm uppercase tracking-wider hover:text-amber-700 transition-colors">
+                {/* CHANGED: Link text and hover colors shifted to Pale Blue/Blue theme */}
+                <a href="#contact" className="inline-flex items-center gap-2 mt-8 text-blue-600 font-bold text-sm uppercase tracking-wider hover:text-blue-700 transition-colors">
                   Discuss Requirements 
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                 </a>
