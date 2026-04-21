@@ -19,7 +19,7 @@ export const projects = [
     status: "Done, 2014",
     location: "Kigali",
     category: "GOVERNMENT",
-    image: "https://placehold.co/600x400/1e293b/ffffff?text=Chequebook+Production"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ export const projects = [
     status: "Done, 2015-2018",
     location: "Kigali",
     category: "SECURITY",
-    image: "https://placehold.co/600x400/334155/ffffff?text=Explosive+Detection"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 4,
@@ -39,7 +39,7 @@ export const projects = [
     status: "Done, 2014",
     location: "Kigali",
     category: "TECHNOLOGY",
-    image: "https://placehold.co/600x400/0f172a/ffffff?text=IT+Security+Infrastructure"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 5,
@@ -49,7 +49,7 @@ export const projects = [
     status: "Done, 2014",
     location: "Kigali",
     category: "COMMERCIAL",
-    image: "https://placehold.co/600x400/475569/ffffff?text=Printing+Equipment"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 6,
@@ -59,7 +59,7 @@ export const projects = [
     status: "Done, 2013",
     location: "Kigali",
     category: "GOVERNMENT",
-    image: "https://placehold.co/600x400/1e293b/ffffff?text=Petroleum+Testing"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 7,
@@ -69,7 +69,7 @@ export const projects = [
     status: "Done, 2017",
     location: "Kigali",
     category: "GOVERNMENT",
-    image: "https://placehold.co/600x400/1e293b/ffffff?text=Backup+Printing+Machines"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 8,
@@ -89,7 +89,7 @@ export const projects = [
     status: "Done, 2017",
     location: "Kigali",
     category: "SECURITY",
-    image: "https://placehold.co/600x400/334155/ffffff?text=Key+Management+System"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 10,
@@ -99,7 +99,7 @@ export const projects = [
     status: "Done, 2017",
     location: "Kigali",
     category: "TECHNOLOGY",
-    image: "https://placehold.co/600x400/0f172a/ffffff?text=E-Board+System"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 11,
@@ -109,7 +109,7 @@ export const projects = [
     status: "Done, 2018",
     location: "Kigali",
     category: "HEALTHCARE",
-    image: "https://placehold.co/600x400/0ea5e9/ffffff?text=Hospital+Oxygen+Piping"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 12,
@@ -119,7 +119,7 @@ export const projects = [
     status: "Done, 2018",
     location: "Kigali",
     category: "GOVERNMENT",
-    image: "https://placehold.co/600x400/1e293b/ffffff?text=Laboratory+Equipment"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 13,
@@ -129,7 +129,7 @@ export const projects = [
     status: "Done, 2018",
     location: "Kigali",
     category: "GOVERNMENT",
-    image: "https://placehold.co/600x400/1e293b/ffffff?text=Number+Plate+Production"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 14,
@@ -139,7 +139,7 @@ export const projects = [
     status: "2019-2021",
     location: "Kigali",
     category: "COMMERCIAL",
-    image: "https://placehold.co/600x400/475569/ffffff?text=Number+Plate+Foils"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 15,
@@ -149,7 +149,7 @@ export const projects = [
     status: "2018-present",
     location: "Kigali",
     category: "SECURITY",
-    image: "https://placehold.co/600x400/334155/ffffff?text=EKMS+Maintenance"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 16,
@@ -159,7 +159,7 @@ export const projects = [
     status: "2015-present",
     location: "Kigali",
     category: "GOVERNMENT",
-    image: "https://placehold.co/600x400/1e293b/ffffff?text=Machine+Maintenance"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 17,
@@ -169,7 +169,7 @@ export const projects = [
     status: "2019-present",
     location: "Kigali",
     category: "TECHNOLOGY",
-    image: "https://placehold.co/600x400/0f172a/ffffff?text=Datacenter+Maintenance"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 18,
@@ -179,7 +179,7 @@ export const projects = [
     status: "Done, 2020",
     location: "Kigali",
     category: "AGRICULTURE",
-    image: "https://placehold.co/600x400/16a34a/ffffff?text=Mobile+Grain+Dryers"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 19,
@@ -189,7 +189,7 @@ export const projects = [
     status: "Done, 2021",
     location: "Kigali",
     category: "TECHNOLOGY",
-    image: "https://placehold.co/600x400/0f172a/ffffff?text=GIS+Equipment"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 20,
@@ -199,7 +199,7 @@ export const projects = [
     status: "Done, 2021",
     location: "Kigali",
     category: "AGRICULTURE",
-    image: "https://placehold.co/600x400/16a34a/ffffff?text=Batch+Grain+Dryer"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 21,
@@ -209,7 +209,7 @@ export const projects = [
     status: "Done, 2022",
     location: "Gicumbi District",
     category: "AGRICULTURE",
-    image: "https://placehold.co/600x400/16a34a/ffffff?text=Industrial+Tea+Dryer"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 22,
@@ -219,7 +219,7 @@ export const projects = [
     status: "Commissioned, 2022",
     location: "Kigali",
     category: "COMMERCIAL",
-    image: "https://placehold.co/600x400/475569/ffffff?text=Waste+Management+Machines"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 23,
@@ -229,7 +229,7 @@ export const projects = [
     status: "2022-2024",
     location: "Kigali",
     category: "TECHNOLOGY",
-    image: "https://placehold.co/600x400/0f172a/ffffff?text=Software+Systems"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 24,
@@ -239,7 +239,7 @@ export const projects = [
     status: "Commissioned, 2022",
     location: "Kigali",
     category: "TECHNOLOGY",
-    image: "https://placehold.co/600x400/0f172a/ffffff?text=Single+Sign-On"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 25,
@@ -249,7 +249,7 @@ export const projects = [
     status: "Commissioned, 2022",
     location: "Kigali",
     category: "COMMERCIAL",
-    image: "https://placehold.co/600x400/475569/ffffff?text=EBM+POS+Distribution"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 26,
@@ -259,7 +259,7 @@ export const projects = [
     status: "Commissioned, 2024",
     location: "Kigali",
     category: "TECHNOLOGY",
-    image: "https://placehold.co/600x400/0f172a/ffffff?text=Survey+Equipment"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 27,
