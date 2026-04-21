@@ -8,7 +8,7 @@ export default function HeroSection() {
       {/* 1. The Giant Cinematic Backdrop */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="src/assets/electrical-solution-services-in-k&a technology.webp" 
+          src="public/electrical-solution-services-in-k&a technology.webp" 
           alt="Critical Infrastructure Backdrop" 
           className="w-full h-full object-cover animate-fade-in"
         />

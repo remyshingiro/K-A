@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/ka-logo.webp'; 
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -62,7 +61,7 @@ export default function Navbar() {
         <Link to="/" className="flex items-center relative z-50" onClick={() => setIsOpen(false)}>
           <div className={`transition-all duration-300 rounded-md ${isOpen ? 'bg-white p-1.5 shadow-md' : 'p-0'}`}>
             <img 
-              src={logo} 
+              src="public/k&atechnology-and-general.png"
               alt="K.A Technology Solution" 
               className={`object-contain transition-all duration-500 ${isScrolled ? 'h-12 md:h-14' : 'h-16 md:h-20 lg:h-24'}`} 
             />
