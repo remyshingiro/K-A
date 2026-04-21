@@ -27,9 +27,10 @@ export default function FeaturedProjects() {
         {/* Header Section */}
         <div className="text-center mb-10">
           <div className="flex items-center justify-center gap-4 mb-4">
-            <div className="h-px w-12 bg-yellow-500"></div>
-            <h2 className="text-yellow-500 font-bold tracking-widest uppercase text-sm">Enterprise Portfolio</h2>
-            <div className="h-px w-12 bg-yellow-500"></div>
+            {/* CHANGED: Accent lines shifted to Pale Blue */}
+            <div className="h-px w-12 bg-blue-400"></div>
+            <h2 className="text-blue-400 font-bold tracking-widest uppercase text-sm">Enterprise Portfolio</h2>
+            <div className="h-px w-12 bg-blue-400"></div>
           </div>
           <h3 className="text-2xl md:text-5xl font-extrabold text-blue-900 tracking-tight mb-4">
             National & Enterprise Infrastructure
@@ -56,11 +57,18 @@ export default function FeaturedProjects() {
           ))}
         </div>
 
-        {/* Project Grid Layout */}
+{/* Project Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 mb-16 min-h-[400px] items-start">
           {displayedProjects.length > 0 ? (
-            displayedProjects.map((project) => (
-              <div key={project.id} className="group cursor-pointer flex flex-col h-full bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-xl transition-all duration-300 overflow-hidden">
+            // We added the 'index' parameter here to track which card we are rendering
+            displayedProjects.map((project, index) => (
+              <div 
+                key={project.id} 
+                // THE FIX: If index is 4 or higher (the 5th-8th projects), hide them on mobile ('hidden'), but show them as a flexbox on medium screens and up ('md:flex')
+                className={`group cursor-pointer flex-col h-full bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-xl transition-all duration-300 overflow-hidden ${
+                  index >= 4 ? 'hidden md:flex' : 'flex'
+                }`}
+              >
                 
                 {/* Image Container with Zoom Physics */}
                 <div className="relative overflow-hidden aspect-[4/3] bg-slate-200 border-b border-slate-100">
@@ -72,7 +80,7 @@ export default function FeaturedProjects() {
                   />
                   {/* Floating Category Badge inside image */}
                   <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded shadow-sm">
-                    <span className="text-yellow-600 text-xs font-extrabold uppercase tracking-wider">
+                    <span className="text-blue-600 text-xs font-extrabold uppercase tracking-wider">
                       {project.category}
                     </span>
                   </div>
@@ -95,8 +103,8 @@ export default function FeaturedProjects() {
                     </div>
                     {/* Status Indicator */}
                     <span className="flex items-center gap-1.5 text-xs font-bold text-slate-600 uppercase tracking-wider">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-900"></span>
-                      {project.status.split(',')[0]}
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                      {project.status}
                     </span>
                   </div>
                 </div>
@@ -116,7 +124,7 @@ export default function FeaturedProjects() {
         <div className="flex justify-center">
           <Link 
             to="/projects" 
-            className="bg-blue-900 hover:bg-blue-900 text-white font-bold py-3.5 px-8 rounded-full transition-all shadow-md hover:shadow-lg flex items-center gap-2"
+            className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-3.5 px-8 rounded-full transition-all shadow-md hover:shadow-lg flex items-center gap-2"
           >
             View All 27 Projects
           </Link>
