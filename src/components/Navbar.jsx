@@ -3,13 +3,12 @@ import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  // 1. ADDED: The state to track if the user has scrolled
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // 2. ADDED: The Scroll Detection Engine
+  // Scroll Detection Engine (Threshold increased to 50px for a smoother trigger)
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
+      if (window.scrollY > 50) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -20,7 +19,7 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Prevent background scrolling when overlay is open
+  // Prevent background scrolling when mobile menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -32,80 +31,107 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
+  // ADDED: Icons to the navigation array
   const navLinks = [
-    { name: 'About Us', href: '/about' },
-    { name: 'Services', href: '/services' },
-    { name: 'Major Projects', href: '/projects' },
-    { name: 'Partners', href: '/partners' },
+    { 
+      name: 'About Us', 
+      href: '/about',
+      icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+    },
+    { 
+      name: 'Services', 
+      href: '/services',
+      icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+    },
+    { 
+      name: 'Major Projects', 
+      href: '/projects',
+      icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+    },
+    { 
+      name: 'Partners', 
+      href: '/partners',
+      icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+    },
   ];
 
   return (
-    // 3. FIXED: Typo corrections (backdrop-blur-md, shadow-sm) and changed to <header>
-    <header className={`w-full z-50 sticky top-0 transition-all duration-300 ${isScrolled && !isOpen ? 'bg-white/90 backdrop-blur-md shadow-md' : 'bg-white shadow-sm'}`}>
+    // CHANGED: Replaced "sticky" with "fixed" to permanently fix the shaking/jitter bug
+    <header className={`w-full z-50 fixed top-0 left-0 right-0 transition-all duration-300 ${isScrolled && !isOpen ? 'bg-white/95 backdrop-blur-md shadow-md' : 'bg-white shadow-sm'}`}>
       
-      {/* Top Utility Bar - Collapses smoothly when scrolled down */}
-      <div className={`hidden md:flex justify-between items-center bg-slate-900 text-slate-300 px-6 transition-all duration-500 overflow-hidden text-xs font-medium ${isScrolled ? 'max-h-0 py-0 opacity-0' : 'max-h-12 py-2 opacity-100'}`}>
+      {/* Top Utility Bar */}
+      <div className={`hidden md:flex justify-between items-center bg-blue-950 text-blue-100 px-6 transition-all duration-500 overflow-hidden text-xs font-medium ${isScrolled ? 'max-h-0 py-0 opacity-0' : 'max-h-10 py-2 opacity-100'}`}>
         <div className="flex gap-6">
-          <span>📍 KG 61 Street, Kimironko Ave, Kigali</span>
-          <span>📧 katechnology.ltd@gmail.com</span>
+          <span className="flex items-center gap-1.5"><svg className="w-3.5 h-3.5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg> KG 61 Street, Kimironko Ave, Kigali</span>
+          <span className="flex items-center gap-1.5"><svg className="w-3.5 h-3.5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg> katechnology.ltd@gmail.com</span>
         </div>
         <div>
-          <span>📞 +250 (0)788483708 / +250 (0)781160198</span>
+          <span className="flex items-center gap-1.5"><svg className="w-3.5 h-3.5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg> +250 (0)788483708 / +250 (0)781160198</span>
         </div>
       </div>
 
-      {/* Main Navigation - Padding shrinks when scrolled */}
-      <nav className={`px-6 lg:px-12 flex justify-between items-center max-w-7xl mx-auto relative z-50 transition-all duration-300 ${isScrolled ? 'py-2' : 'py-3'}`}>
+      {/* Main Navigation */}
+      <nav className={`px-4 lg:px-8 flex justify-between items-center max-w-7xl mx-auto relative z-50 transition-all duration-300 ${isScrolled ? 'py-2' : 'py-3.5'}`}>
         
-        {/* Dynamic Logo - Shrinks when scrolled to save vertical space */}
-        <Link to="/" className="flex items-center relative z-50" onClick={() => setIsOpen(false)}>
+        {/* Dynamic Logo + Company Name Lockup */}
+        <Link to="/" className="flex items-center gap-3 relative z-50 group" onClick={() => setIsOpen(false)}>
           <div className={`transition-all duration-300 rounded-md ${isOpen ? 'bg-white p-1.5 shadow-md' : 'p-0'}`}>
             <img 
-              src="public/k&atechnology-and-general.png"
+              // FIXED: Root path avoids the broken "public/" routing issue
+              src="/k&atechnology-and-general.png"
               alt="K.A Technology Solution" 
-              className={`object-contain transition-all duration-500 ${isScrolled ? 'h-12 md:h-14' : 'h-16 md:h-20 lg:h-24'}`} 
+              className={`object-contain transition-all duration-500 ${isScrolled ? 'h-10 md:h-12' : 'h-14 md:h-16'}`} 
             />
+          </div>
+          {/* ADDED: Company Name stacked format for professional scaling */}
+          <div className={`flex flex-col justify-center transition-all duration-300`}>
+             <span className="font-extrabold text-blue-950 uppercase tracking-tighter text-sm md:text-lg leading-none group-hover:text-blue-700 transition-colors">K&A Technology</span>
+             <span className="font-bold text-blue-500 uppercase tracking-widest text-[9px] md:text-[11px] mt-0.5">& General Business Ltd</span>
           </div>
         </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex gap-8 text-sm font-semibold text-slate-600">
+        {/* Desktop Menu - LARGER TEXT & ICONS */}
+        <div className="hidden lg:flex gap-8 text-base font-bold text-slate-600">
           {navLinks.map((link) => (
-            <Link key={link.name} to={link.href} className="hover:text-blue-700 transition-colors">
+            <Link key={link.name} to={link.href} className="flex items-center gap-2 hover:text-blue-700 transition-colors">
+              <span className="text-blue-400">{link.icon}</span>
               {link.name}
             </Link>
           ))}
         </div>
 
-        <button className="hidden md:block bg-blue-700 hover:bg-blue-800 text-white px-6 py-2.5 rounded-md font-semibold text-sm transition-colors shadow-md">
+        <a href="#contact" className="hidden lg:block bg-blue-700 hover:bg-blue-800 text-white px-6 py-2.5 rounded-lg font-bold text-sm transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">
           Request Quote
-        </button>
+        </a>
 
-        {/* Animated Hamburger Button (Mobile) - Always dark (slate-900) */}
+        {/* Animated Hamburger Button (Mobile) */}
         <button
-          className="md:hidden relative z-50 w-8 h-8 flex flex-col justify-center items-center group focus:outline-none"
+          className="lg:hidden relative z-50 w-10 h-10 flex flex-col justify-center items-center group focus:outline-none bg-slate-50 rounded-md border border-slate-200"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle Menu"
         >
-          <span className={`block w-6 h-[2px] rounded-full bg-slate-900 transition-all duration-300 ease-out ${isOpen ? 'rotate-45 translate-y-1.5' : '-translate-y-1'}`}></span>
-          <span className={`block w-6 h-[2px] rounded-full bg-slate-900 transition-all duration-300 ease-out my-0.5 ${isOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-          <span className={`block w-6 h-[2px] rounded-full bg-slate-900 transition-all duration-300 ease-out ${isOpen ? '-rotate-45 -translate-y-1.5' : 'translate-y-1'}`}></span>
+          <span className={`block w-5 h-[2px] rounded-full bg-blue-950 transition-all duration-300 ease-out ${isOpen ? 'rotate-45 translate-y-1.5' : '-translate-y-1'}`}></span>
+          <span className={`block w-5 h-[2px] rounded-full bg-blue-950 transition-all duration-300 ease-out my-0.5 ${isOpen ? 'opacity-0' : 'opacity-100'}`}></span>
+          <span className={`block w-5 h-[2px] rounded-full bg-blue-950 transition-all duration-300 ease-out ${isOpen ? '-rotate-45 -translate-y-1.5' : 'translate-y-1'}`}></span>
         </button>
       </nav>
 
-      {/* Full-Screen Command Overlay (Mobile) - Light Theme */}
+      {/* Full-Screen Command Overlay (Mobile) */}
       <div 
-        className={`fixed inset-0 bg-white z-40 flex flex-col px-6 pt-28 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8 pointer-events-none'}`}
+        className={`fixed inset-0 bg-white z-40 flex flex-col px-6 pt-28 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8 pointer-events-none'}`}
       >
-        <div className="flex-grow flex flex-col justify-center gap-8 mb-8">
+        <div className="flex-grow flex flex-col justify-center gap-6 mb-8">
           {navLinks.map((link, i) => (
             <Link
               key={link.name}
               to={link.href}
               onClick={() => setIsOpen(false)}
               style={{ transitionDelay: `${isOpen ? i * 100 + 150 : 0}ms` }}
-              className={`text-slate-700 text-2xl font-bold tracking-wide transform transition-all duration-500 ease-out hover:text-blue-700 border-b border-slate-100 pb-2 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+              className={`flex items-center gap-4 text-slate-800 text-2xl font-bold tracking-wide transform transition-all duration-500 ease-out hover:text-blue-700 border-b border-slate-100 pb-4 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
             >
+              <div className="bg-blue-50 p-2 rounded-lg text-blue-600">
+                {link.icon}
+              </div>
               {link.name}
             </Link>
           ))}
@@ -117,12 +143,12 @@ export default function Navbar() {
         >
           <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
             <p className="text-blue-700 text-xs font-bold uppercase tracking-widest mb-3">Enterprise Contact</p>
-            <p className="text-slate-900 text-base font-medium mb-1">+250 (0)788 483 708</p>
+            <p className="text-blue-950 text-base font-extrabold mb-1">+250 (0)788 483 708</p>
             <p className="text-slate-600 text-sm mb-5">katechnology.ltd@gmail.com</p>
             
-            <button className="bg-blue-700 hover:bg-blue-800 text-white w-full py-3.5 rounded-lg font-bold text-sm transition-colors shadow-lg">
+            <a href="#contact" onClick={() => setIsOpen(false)} className="bg-blue-700 hover:bg-blue-800 text-white w-full py-3.5 rounded-lg font-bold text-sm transition-colors shadow-lg flex justify-center">
               Request Formal Quote
-            </button>
+            </a>
           </div>
         </div>
       </div>
