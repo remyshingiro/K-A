@@ -57,42 +57,42 @@ export const partners = [
     name: "STULZ",
     location: "Germany",
     expertise: "Manufacturer of Datacenter Cooling System",
-    logo: "src/assets/2025-09-08.webp"
+    logo: "/stulz-logo.jpeg"
   },
   {
     id: 9,
     name: "Traka Africa Ltd",
     location: "South Africa",
     expertise: "Manufacturer of Electronic Key management System",
-    logo: "src/assets/2025-09-08.webp"
+    logo: "/traka-logo-2T.svg"
   },
   {
     id: 10,
     name: "UTAL",
     location: "Poland",
     expertise: "Manufacturer of Vehicle Number plate production machines",
-    logo: "src/assets/2025-09-08.webp"
+    logo: "/utal.svg"
   },
   {
     id: 11,
     name: "E-Horizon",
     location: "Kenya",
     expertise: "Developer and Supplier of electronic Board Meeting software",
-    logo: "src/assets/2025-09-08.webp"
+    logo: ""
   },
   {
     id: 12,
     name: "MECMAR SPA",
     location: "Italy",
     expertise: "Manufacturer of Grain Mobile Drying Machines",
-    logo: "src/assets/2025-09-08.webp"
+    logo: "/logo.png"
   },
   {
     id: 13,
     name: "McCloy Company",
     location: "Kenya",
     expertise: "Manufacturer of Tea Driers Machines",
-    logo: "src/assets/2025-09-08.webp"
+    logo: "/JFMccloy-e1737970189848-768x236.jpeg"
   },
   {
     id: 14,
@@ -106,6 +106,6 @@ export const partners = [
     name: "Shenzhen ZCS Technology Ltd",
     location: "China",
     expertise: "Manufacturer of Point of Sales (POS)",
-    logo: "src/assets/2025-09-08.webp"
+    logo: "/gongsiLOGO.png"
   }
 ];
