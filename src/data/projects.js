@@ -9,7 +9,7 @@ export const projects = [
     status: "Done, 2013",
     location: "Arusha, Tanzania",
     category: "TECHNOLOGY",
-    image: "https://placehold.co/600x400/0f172a/ffffff?text=Video+Telepresence+System"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 2,
@@ -79,7 +79,7 @@ export const projects = [
     status: "Done, 2017",
     location: "Kigali",
     category: "TECHNOLOGY",
-    image: "https://placehold.co/600x400/0f172a/ffffff?text=Datacenter+Cooling"
+    image: "/k&atechnology-and-general.png"
   },
   {
     id: 9,
@@ -269,6 +269,6 @@ export const projects = [
     status: "Commissioned, 2024",
     location: "Nyagatare, Rubavu, Rusizi, Muhanga",
     category: "TECHNOLOGY",
-    image: "https://placehold.co/600x400/0f172a/ffffff?text=Hang+Hubs+Equipment"
+    image: "/k&atechnology-and-general.png"
   }
 ];

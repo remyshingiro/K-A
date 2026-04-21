@@ -6,21 +6,21 @@ export const partners = [
     name: "FileHold Company",
     location: "USA",
     expertise: "EDMS Application",
-    logo: "src/assets/2025-09-08.webp"
+    logo: "https://filehold.com/wp-content/uploads/2025/05/Filehold_Horizontal_Lockup_Full_Color_RGB_300px@72ppi.png"
   },
   {
     id: 2,
     name: "Rototype S.P.A",
     location: "Italy",
     expertise: "Manufacturer of Chequebook Printing machine",
-    logo: "src/assets/2025-09-08.webp"
+    logo: "/Rotologo.png"
   },
   {
     id: 3,
     name: "Vidyo Inc.",
     location: "USA",
     expertise: "Video Conferencing Systems",
-    logo: "src/assets/2025-09-08.webp"
+    logo: "https://www.vidyo.com/wp-content/uploads/2022/11/Vidyo_Enghouse-Corporate-Logo_linear_WHITE-300x141-1-980x462.png"
   },
   {
     id: 4,
@@ -28,7 +28,7 @@ export const partners = [
     location: "USA",
     expertise: "Explosive Detection Equipment",
     // Note: Morpho is part of IDEMIA/Smiths Detection. Using IDEMIA domain.
-    logo: "src/assets/2025-09-08.webp"
+    logo: "/smith.png"
   },
   {
     id: 5,
@@ -43,14 +43,14 @@ export const partners = [
     name: "Network Intelligence",
     location: "India",
     expertise: "Systems security & Network Audit",
-    logo: "src/assets/2025-09-08.webp"
+    logo: "/ni.png"
   },
   {
     id: 7,
     name: "Normal Lab France",
     location: "France",
     expertise: "Manufacturer of Petroleum testing equipment",
-    logo: "src/assets/2025-09-08.webp"
+    logo: "/logo-normalab.svg"
   },
   {
     id: 8,
