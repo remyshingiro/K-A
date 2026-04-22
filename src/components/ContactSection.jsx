@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { MapPin, Phone, Mail, CheckCircle2 } from 'lucide-react';
 
 export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -17,22 +18,15 @@ export default function ContactSection() {
   };
 
   return (
-    // Changed: Tighter padding (py-16 instead of py-24) and Rich Blue background
     <section id="contact" className="py-16 bg-blue-950 text-slate-300 border-t border-blue-900 relative overflow-hidden">
       
       {/* --- BACKGROUND ACCENTS & SYMBOLS --- */}
-      {/* 1. Original Architectural Skew */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-blue-800/10 pointer-events-none transform skew-x-12 translate-x-32"></div>
-      
-      {/* 2. New Ambient Glow Orb */}
       <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
-      
-      {/* 3. New Enterprise Data Grid Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none"></div>
       {/* ---------------------------------- */}
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-        {/* Changed: Tighter gap between columns (gap-10 instead of gap-16) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           
           {/* Left Column: Corporate Trust Signals */}
@@ -40,7 +34,6 @@ export default function ContactSection() {
             <h2 className="text-blue-400 font-bold tracking-widest uppercase text-xs mb-3">
               Corporate Consultation
             </h2>
-            {/* Changed: Slightly smaller heading to save space */}
             <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
               Ready to modernize your infrastructure?
             </h3>
@@ -48,10 +41,12 @@ export default function ContactSection() {
               Contact our engineering and procurement team today. We provide comprehensive architectural audits and hardware deployment strategies for enterprise clients across East Africa.
             </p>
 
-            {/* Changed: Tighter spacing between icons */}
+            {/* CHANGED: Replaced emojis with crisp Lucide React icons */}
             <div className="space-y-6">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 bg-blue-900/50 rounded-lg flex items-center justify-center text-blue-400 text-lg border border-blue-800/50 backdrop-blur-sm">📍</div>
+                <div className="w-10 h-10 bg-blue-900/50 rounded-lg flex items-center justify-center text-blue-400 border border-blue-800/50 backdrop-blur-sm shadow-inner">
+                  <MapPin className="w-5 h-5" />
+                </div>
                 <div>
                   <h4 className="font-bold text-white text-base">Headquarters</h4>
                   <p className="text-blue-100/60 text-sm">KG 61 Street, Kimironko Ave.<br/>P.O Box 3811, Gasabo District<br/>Kigali, Rwanda</p>
@@ -59,7 +54,9 @@ export default function ContactSection() {
               </div>
               
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 bg-blue-900/50 rounded-lg flex items-center justify-center text-blue-400 text-lg border border-blue-800/50 backdrop-blur-sm">📞</div>
+                <div className="w-10 h-10 bg-blue-900/50 rounded-lg flex items-center justify-center text-blue-400 border border-blue-800/50 backdrop-blur-sm shadow-inner">
+                  <Phone className="w-5 h-5" />
+                </div>
                 <div>
                   <h4 className="font-bold text-white text-base">Direct Lines</h4>
                   <p className="text-blue-100/60 text-sm">+250 (0)788 483 708<br/>+250 (0)781 160 198</p>
@@ -67,7 +64,9 @@ export default function ContactSection() {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 bg-blue-900/50 rounded-lg flex items-center justify-center text-blue-400 text-lg border border-blue-800/50 backdrop-blur-sm">📧</div>
+                <div className="w-10 h-10 bg-blue-900/50 rounded-lg flex items-center justify-center text-blue-400 border border-blue-800/50 backdrop-blur-sm shadow-inner">
+                  <Mail className="w-5 h-5" />
+                </div>
                 <div>
                   <h4 className="font-bold text-white text-base">Email Protocol</h4>
                   <p className="text-blue-100/60 text-sm">katechnology.ltd@gmail.com</p>
@@ -77,19 +76,20 @@ export default function ContactSection() {
           </div>
 
           {/* Right Column: Interactive Lead Capture Form */}
-          {/* Changed: Reduced padding (p-6 md:p-8) for a tighter UI card */}
           <div className="bg-white p-6 md:p-8 rounded-2xl shadow-2xl relative">
             
             {isSuccess ? (
               <div className="h-full min-h-[350px] flex flex-col items-center justify-center text-center animate-fade-in">
-                <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mb-5 shadow-sm">✓</div>
+                {/* CHANGED: Replaced string text with Lucide icon for the success state */}
+                <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-5 shadow-sm">
+                  <CheckCircle2 className="w-8 h-8" />
+                </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Request Received</h3>
                 <p className="text-slate-600 text-sm max-w-sm">
                   Thank you for reaching out. A dedicated enterprise liaison will review your scope and contact you within 24 hours.
                 </p>
               </div>
             ) : (
-              // Changed: Tighter form spacing (space-y-4)
               <form onSubmit={handleSubmit} className="space-y-4">
                 <h4 className="text-xl font-bold text-slate-900 mb-6 border-b border-slate-100 pb-3">
                   Request a Formal Quote
